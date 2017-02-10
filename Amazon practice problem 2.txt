@@ -1,0 +1,24 @@
+Explanation for the architecture for practice problem 2
+
+First divide the DB(database) to multiple DBs
+
+We devide business logic into 3 layers
+
+ - Data Access Object(DAO)
+   This layer queries the DB. It can be implemented as a interface(API like)
+   And each DB will have it's own implementation for the DAO, so queries will be successfully made.
+   This layer handles overall communication between the DB and the Business logic
+
+ - Service Layer
+   This layer process the data retrieved from the DB to a format to something that Logic layer can use
+   For instance, if we want to know the address of the customer, service layer makes multiple calls to the
+   Data access object, and from the retrieved queries, filters out the needed information(address in this case).
+   We can make multiple calls if the required data is distributed in multiple DBs
+
+ - Logic Layer(Business Logic from the simplest architecture from the example)
+   This layer is the handles the business logic. Simple layer that is the web service itself.
+
+By dividing business logic to 3 different layers(more like adding two other layers into a existing one),
+this architecture will be scalable(by adding more DBs to distribute the traffic on each DB), 
+and avaliable(since we use REST, the burden of traffic will be only applied to the DB queries).
+
